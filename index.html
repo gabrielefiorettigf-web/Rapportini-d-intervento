@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resoconto Giornaliero</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; padding: 15px; color: #333; }
+        .container { max-width: 500px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: auto; }
+        h2 { text-align: center; color: #0cc227; margin-bottom: 5px; }
+        p.subtitle { text-align: center; font-size: 0.9em; color: #666; margin-bottom: 20px; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9em; }
+        input, textarea, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        .btn-group { display: flex; gap: 10px; margin-top: 25px; }
+        button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn-send { background-color: #27ae60; color: white; }
+        .btn-clear { background-color: #e74c3c; color: white; }
+        .status-save { text-align: center; font-size: 0.8em; color: #27ae60; margin-top: 10px; display: none; }
+        .logo-azienda { display: block; max-width: 150px; margin: 0 auto 15px auto; border-radius: 8px; }
+        .due-colonne { display: flex; gap: 15px; align-items: flex-start; }
+        .due-colonne div { flex: 1; }
+        .box-orario { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+        .box-orario select { padding: 10px 5px; text-align: center; }
+        .foto-piccola { padding: 8px; font-size: 13px; background: white; margin-top: 5px; }
+        .label-piccola { font-size: 0.8em; color: #555; margin-top: 8px; font-weight: normal; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="https://i.postimg.cc/BbPfSwtr/nuovo-logo-2025.jpg" alt="" class="logo-azienda">
+
+    <h2>Rapportino d'intervento</h2>
+    <p class="subtitle">I dati vengono salvati automaticamente mentre scrivi.</p>
+    
+    <form id="reportForm">
+        <label>Nome Operaio</label>
+        <select id="nome" class="save-local">
+            <option value="">Seleziona il tuo nome...</option>
+            <option value="Pires De Jesus Maria Carolina">Pires De Jesus Maria Carolina</option>
+            <option value="Tortarella Ermanno">Tortorella Ermanno</option>
+            <option value="Moscarella Sara">Moscarella Sara</option>
+            <option value="Fioretti Diego">Fioretti Diego</option>
+            <option value="Dadzie Papa">Dadzie Papa</option>
+            <option value="Koxhaj Aurel">Koxhaj Aurel</option>
+            <option value="Fioretti Gabriele">Fioretti Gabriele</option>
+        </select>
+        
+        <label>Data</label>
+        <input type="date" id="data" class="save-local">
+
+        <div class="due-colonne">
+            <div>
+                <label>Ore Lavorate</label>
+                <input type="number" id="ore" class="save-local" step="0.5" placeholder="Es: 4">
+                
+                <label style="margin-top: 10px;">Ore Viaggio</label>
+                <input type="number" id="oreViaggio" class="save-local" step="0.5" placeholder="Es: 1.5">
+            </div>
+            <div>
+                <label>Fascia Oraria</label>
+                <div class="box-orario">
+                    <select id="oraInizio" class="save-local">
+                        <option value="">Inizio</option>
+                        <option value="00:00">00:00</option><option value="00:30">00:30</option>
+                        <option value="01:00">01:00</option><option value="01:30">01:30</option>
+                        <option value="02:00">02:00</option><option value="02:30">02:30</option>
+                        <option value="03:00">03:00</option><option value="03:30">03:30</option>
+                        <option value="04:00">04:00</option><option value="04:30">04:30</option>
+                        <option value="05:00">05:00</option><option value="05:30">05:30</option>
+                        <option value="06:00">06:00</option><option value="06:30">06:30</option>
+                        <option value="07:00">07:00</option><option value="07:30">07:30</option>
+                        <option value="08:00">08:00</option><option value="08:30">08:30</option>
+                        <option value="09:00">09:00</option><option value="09:30">09:30</option>
+                        <option value="10:00">10:00</option><option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option><option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option><option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option><option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option><option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option><option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option><option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option><option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option><option value="18:30">18:30</option>
+                        <option value="19:00">19:00</option><option value="19:30">19:30</option>
+                        <option value="20:00">20:00</option><option value="20:30">20:30</option>
+                        <option value="21:00">21:00</option><option value="21:30">21:30</option>
+                        <option value="22:00">22:00</option><option value="22:30">22:30</option>
+                        <option value="23:00">23:00</option><option value="23:30">23:30</option>
+
+
+                    </select>
+                    <span>-</span>
+                    <select id="oraFine" class="save-local">
+                        <option value="">Fine</option>
+                        <option value="00:00">00:00</option><option value="00:30">00:30</option>
+                        <option value="01:00">01:00</option><option value="01:30">01:30</option>
+                        <option value="02:00">02:00</option><option value="02:30">02:30</option>
+                        <option value="03:00">03:00</option><option value="03:30">03:30</option>
+                        <option value="04:00">04:00</option><option value="04:30">04:30</option>
+                        <option value="05:00">05:00</option><option value="05:30">05:30</option>
+                        <option value="06:00">06:00</option><option value="06:30">06:30</option>
+                        <option value="07:00">07:00</option><option value="07:30">07:30</option>
+                        <option value="08:00">08:00</option><option value="08:30">08:30</option>
+                        <option value="09:00">09:00</option><option value="09:30">09:30</option>
+                        <option value="10:00">10:00</option><option value="10:30">10:30</option>
+                        <option value="11:00">11:00</option><option value="11:30">11:30</option>
+                        <option value="12:00">12:00</option><option value="12:30">12:30</option>
+                        <option value="13:00">13:00</option><option value="13:30">13:30</option>
+                        <option value="14:00">14:00</option><option value="14:30">14:30</option>
+                        <option value="15:00">15:00</option><option value="15:30">15:30</option>
+                        <option value="16:00">16:00</option><option value="16:30">16:30</option>
+                        <option value="17:00">17:00</option><option value="17:30">17:30</option>
+                        <option value="18:00">18:00</option><option value="18:30">18:30</option>
+                        <option value="19:00">19:00</option><option value="19:30">19:30</option>
+                        <option value="20:00">20:00</option><option value="20:30">20:30</option>
+                        <option value="21:00">21:00</option><option value="21:30">21:30</option>
+                        <option value="22:00">22:00</option><option value="22:30">22:30</option>
+                        <option value="23:00">23:00</option><option value="23:30">23:30</option>
+
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <label>Mezzo Utilizzato</label>
+        <select id="mezzo" class="save-local">
+            <option value="">Seleziona mezzo...</option>
+            <option value="Ducato">Ducato</option><option value="Fiorino">Fiorino</option>
+            <option value="Opel">Opel</option><option value="Altro">Altro</option>
+        </select>
+
+        <label>KM Iniziali</label>
+        <input type="number" id="kmInizio" class="save-local" placeholder="KM alla partenza">
+
+        <label>KM Attuali / Finali</label>
+        <input type="number" id="kmFine" class="save-local" placeholder="KM al rientro">
+
+        <div class="due-colonne">
+            <div>
+                <label>Benzina (€)</label>
+                <input type="number" id="benzina" class="save-local" step="0.01" placeholder="0.00">
+                <label class="label-piccola">Ricevuta benzina</label>
+                <input type="file" id="fotoBenzina" accept="image/*" capture="environment" class="foto-piccola">
+            </div>
+            <div>
+                <label>Pedaggio (€)</label>
+                <input type="number" id="pedaggio" class="save-local" step="0.01" placeholder="0.00">
+                <label class="label-piccola">Ricevuta pedaggio</label>
+                <input type="file" id="fotoPedaggio" accept="image/*" capture="environment" class="foto-piccola">
+            </div>
+        </div>
+
+        <label>Luogo / Cantiere</label>
+        <input type="text" id="luogo" class="save-local" placeholder="Es: Via Roma 10">
+
+        <label>Intervento eseguito</label>
+        <textarea id="attivita" class="save-local" rows="3" placeholder="Descrizione lavori"></textarea>
+
+        <label>Materiali Usati</label>
+        <textarea id="materiali" class="save-local" rows="2" placeholder="Materiale utilizzato"></textarea>
+
+        <label>Foto Bolla/Fattura (Opzionale)</label>
+        <input type="file" id="fotoBolla" accept="image/*" capture="environment" style="background: white;">
+
+        <div class="btn-group">
+            <button type="button" class="btn-clear" onclick="pulisciModulo()">Nuovo Giorno</button>
+            <button type="submit" class="btn-send">Invia Fine Giornata</button>
+        </div>
+        <div id="status" class="status-save">✔ Dati salvati sul telefono</div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('reportForm');
+    const inputs = document.querySelectorAll('.save-local');
+    const statusText = document.getElementById('status');
+
+    window.onload = () => {
+        inputs.forEach(input => {
+            const savedValue = localStorage.getItem(input.id);
+            if (savedValue) { input.value = savedValue; }
+        });
+        if (!document.getElementById('data').value) {
+            document.getElementById('data').valueAsDate = new Date();
+        }
+    };
+
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            localStorage.setItem(input.id, input.value);
+            statusText.style.display = 'block';
+            setTimeout(() => { statusText.style.display = 'none'; }, 1500);
+        });
+    });
+
+    function pulisciModulo() {
+        if (confirm("Iniziare un nuovo resoconto?")) {
+            localStorage.clear();
+            form.reset();
+            document.getElementById('data').valueAsDate = new Date();
+        }
+    }
+
+    function leggiFoto(file) {
+        return new Promise((resolve) => {
+            if (!file) { resolve(null); return; }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                resolve({ data: e.target.result.split(',')[1], name: file.name, mime: file.type });
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw2DTSTuusS3NVoRkgudn7tVP2ukPx6wFKnCZUIqoESRFJ8JGCOGSkfjSXc5i6WizWl/exec';
+        const btn = document.querySelector('.btn-send');
+        btn.innerText = "Invio in corso...";
+        btn.disabled = true;
+
+        const orarioInizio = document.getElementById('oraInizio').value;
+        const orarioFine = document.getElementById('oraFine').value;
+        let orarioCombinato = (orarioInizio || orarioFine) ? `${orarioInizio} - ${orarioFine}` : "";
+
+        const f1 = await leggiFoto(document.getElementById('fotoBolla').files[0]);
+        const f2 = await leggiFoto(document.getElementById('fotoBenzina').files[0]);
+        const f3 = await leggiFoto(document.getElementById('fotoPedaggio').files[0]);
+
+        const dati = {
+            nome: document.getElementById('nome').value,
+            dataLavoro: document.getElementById('data').value,
+            ore: document.getElementById('ore').value,
+            oreViaggio: document.getElementById('oreViaggio').value, // AGGIUNTO
+            orario: orarioCombinato, 
+            mezzo: document.getElementById('mezzo').value,
+            kmInizio: document.getElementById('kmInizio').value,
+            kmFine: document.getElementById('kmFine').value,
+            benzina: document.getElementById('benzina').value,
+            pedaggio: document.getElementById('pedaggio').value,
+            luogo: document.getElementById('luogo').value,
+            attivita: document.getElementById('attivita').value,
+            materiali: document.getElementById('materiali').value,
+            fotoBolla: f1, fotoBenzina: f2, fotoPedaggio: f3
+        };
+
+        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(dati) })
+        .then(() => {
+            alert("Inviato con successo!");
+            btn.innerText = "Invia Fine Giornata"; btn.disabled = false;
+            pulisciModulo(); 
+        })
+        .catch(() => {
+            alert("Errore connessione.");
+            btn.innerText = "Invia Fine Giornata"; btn.disabled = false;
+        });
+    });
+</script>
+</body>
+</html>
